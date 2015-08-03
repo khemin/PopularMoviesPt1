@@ -1,18 +1,56 @@
 package com.khemin.and.popularmovies;
 
-import java.io.Serializable;
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.util.Date;
 
 /**
  * Created by Khemin on 3/8/15.
  */
-public class Movie implements Serializable {
+public class Movie implements Parcelable {
     private long id;
     private String title;
     private String posterUrl;
     private String synopsis;
     private double rating;
     private Date releaseDate;
+
+    public Movie() { }
+
+    public Movie(Parcel in) {
+        id = in.readLong();
+        title = in.readString();
+        posterUrl = in.readString();
+        synopsis = in.readString();
+        rating = in.readDouble();
+        releaseDate = new Date(in.readLong());
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeLong(id);
+        dest.writeString(title);
+        dest.writeString(posterUrl);
+        dest.writeString(synopsis);
+        dest.writeDouble(rating);
+        dest.writeLong(releaseDate.getTime());
+    }
+
+    public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
+        public Movie createFromParcel(Parcel in) {
+            return new Movie(in);
+        }
+
+        public Movie[] newArray(int size) {
+            return new Movie[size];
+        }
+    };
 
     public long getId() {
         return id;
@@ -61,5 +99,6 @@ public class Movie implements Serializable {
     public void setReleaseDate(Date releaseDate) {
         this.releaseDate = releaseDate;
     }
+
 
 }

@@ -30,7 +30,7 @@ public class DetailActivityFragment extends Fragment {
         TextView tvSynopsis = (TextView) rootView.findViewById(R.id.tv_synopsis);
         ImageView ivPoster = (ImageView) rootView.findViewById(R.id.iv_poster);
 
-        Movie movie = (Movie) getActivity().getIntent().getSerializableExtra("movieObject");
+        Movie movie = (Movie) getActivity().getIntent().getParcelableExtra("movieObject");
 
         tvTitle.setText(movie.getTitle());
         if (movie.getReleaseDate() != null) {

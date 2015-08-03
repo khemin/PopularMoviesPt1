@@ -3,6 +3,7 @@ package com.khemin.and.popularmovies;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -10,6 +11,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A placeholder fragment containing a simple view.
@@ -37,6 +41,12 @@ public class MainActivityFragment extends Fragment {
             }
         });
         mMoviesAdapter = new MoviesAdapter(getActivity());
+        if (savedInstanceState != null) {
+            List<Movie> data = savedInstanceState.getParcelableArrayList("movies");
+            if (data != null) {
+                mMoviesAdapter.setData(data);
+            }
+        }
         moviesGridView.setAdapter(mMoviesAdapter);
         return rootView;
     }
@@ -50,5 +60,11 @@ public class MainActivityFragment extends Fragment {
         String sorting = prefs.getString(getString(R.string.pref_sorting_key),
                 getString(R.string.pref_sorting_popular));
         mFetchMoviesTask.execute(sorting);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putParcelableArrayList("movies", (ArrayList<? extends Parcelable>) mMoviesAdapter.data);
     }
 }
