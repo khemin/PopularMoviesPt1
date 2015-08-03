@@ -1,65 +1,80 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
-    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context="com.khemin.and.popularmovies.DetailActivityFragment"
-    android:orientation="horizontal">
+    tools:context="com.khemin.and.popularmovies.DetailActivityFragment">
 
 
     <ImageView
         android:id="@+id/iv_poster"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher"
         android:layout_weight="1"
         android:paddingRight="@dimen/activity_vertical_margin"
-        android:scaleType="fitStart"/>
-    <RelativeLayout
+        android:scaleType="fitStart"
+        android:src="@mipmap/ic_launcher" />
+
+    <ScrollView
         android:layout_width="0dp"
         android:layout_height="match_parent"
         android:layout_weight="2">
 
-        <TextView android:id="@+id/tv_title"
-            android:text="@string/title_mock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="@dimen/abc_text_size_headline_material"/>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
 
-        <TextView android:id="@+id/tv_release_date_str"
-            android:text="@string/release_date"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_title"/>
-        <TextView android:id="@+id/tv_release_date"
-            android:text="@string/date_mock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_release_date_str"
-            android:layout_below="@id/tv_title"
-            android:layout_marginLeft="@dimen/following_textview_padding" />
-        <TextView android:id="@+id/tv_rating_str"
-            android:text="@string/rating"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_release_date"/>
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/title_mock"
+                android:textSize="@dimen/abc_text_size_headline_material" />
 
-        <TextView android:id="@+id/tv_rating"
-            android:text="@string/rating_mock"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toRightOf="@id/tv_rating_str"
-            android:layout_below="@id/tv_release_date"
-            android:layout_marginLeft="@dimen/following_textview_padding"/>
-        <TextView
-            android:id="@+id/tv_synopsis"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tv_rating_str"
-            android:text="@string/synopsis_mock"
-            android:layout_marginTop="20dp"
-            />
-    </RelativeLayout>
+            <TextView
+                android:id="@+id/tv_release_date_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:text="@string/release_date" />
+
+            <TextView
+                android:id="@+id/tv_release_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_title"
+                android:layout_marginLeft="@dimen/following_textview_padding"
+                android:layout_toRightOf="@id/tv_release_date_str"
+                android:text="@string/date_mock" />
+
+            <TextView
+                android:id="@+id/tv_rating_str"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_release_date"
+                android:text="@string/rating" />
+
+            <TextView
+                android:id="@+id/tv_rating"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_release_date"
+                android:layout_marginLeft="@dimen/following_textview_padding"
+                android:layout_toRightOf="@id/tv_rating_str"
+                android:text="@string/rating_mock" />
+
+            <TextView
+                android:id="@+id/tv_synopsis"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tv_rating_str"
+                android:layout_marginTop="20dp"
+                android:text="@string/synopsis_mock" />
+        </RelativeLayout>
+    </ScrollView>
 
 </LinearLayout>
