@@ -24,7 +24,10 @@ public class Movie implements Parcelable {
         posterUrl = in.readString();
         synopsis = in.readString();
         rating = in.readDouble();
+        long dateLong = in.readLong();
+        if (dateLong != -1)
         releaseDate = new Date(in.readLong());
+        else releaseDate = null;
     }
 
     @Override
@@ -39,7 +42,9 @@ public class Movie implements Parcelable {
         dest.writeString(posterUrl);
         dest.writeString(synopsis);
         dest.writeDouble(rating);
+        if (releaseDate != null)
         dest.writeLong(releaseDate.getTime());
+        else dest.writeLong(-1);
     }
 
     public static final Parcelable.Creator CREATOR = new Parcelable.Creator() {
